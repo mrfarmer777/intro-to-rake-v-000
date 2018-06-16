@@ -10,7 +10,7 @@ task :hola do
 end
 end
 
-
+#Pulls in the require so rake has access to the classes it needs
 task :environment do
   require_relative './config/environment'
 end
@@ -19,6 +19,11 @@ namespace :db do
   desc 'migrate changes to your database'
   #task dependency, gotta get the environment first
   task :migrate => :environment do
-    Student.create_table
+    Student.create_table #got the student class thanks to require above
+  end
+
+  desc 'seed the database with some dummy data'
+  task :seed do
+    require_relative './db/seeds.rb'
   end
 end
